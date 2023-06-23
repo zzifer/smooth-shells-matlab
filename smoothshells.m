@@ -55,7 +55,8 @@ disp('MCMC initialization...')
 disp('Full run...')
 
 % 调用layeredmatching函数，将X、Y、feat、kArray、tauInit和 param 作为参数传入，
-% 并将返回值分别赋给 tau、X、Y 和 featOut。该函数用于进行分层匹配
+% 并将返回值分别赋给 tau、X、Y 和 featOut。
+% 该函数用于进行分层匹配
 [tau,X,Y,featOut] = layeredmatching(X,Y,feat,kArray,tauInit,param);
 
 % 计算变形后的完整形状vertCurrFull，通过将 X.vert和X.evecs(:,1:size(tau,1))相乘，并加上tau
