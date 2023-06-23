@@ -21,9 +21,9 @@ function [Cfix,ainit,iMin,errorArrayGT,errorArray] = initMCMC(X,Y,param,kMin,kMa
 
     % 调用standardparams函数，使用给定的参数param或默认参数，将其赋值给变量param
     param = standardparams(param);
-    % 将参数param.facFeat设置为1.5，用于控制特征能量项的权重
+    % 将参数param.facFeat设置为1.5
     param.facFeat = 1.5;
-    % 将参数param.lambdaFeat设置为0，表示特征能量项的正则化权重为0
+    % 将参数param.lambdaFeat设置为0
     param.lambdaFeat = 0;
     % 将参数param.plotCorr设置为false，表示不绘制对应关系图
     param.plotCorr = false;
@@ -45,7 +45,6 @@ function [Cfix,ainit,iMin,errorArrayGT,errorArray] = initMCMC(X,Y,param,kMin,kMa
 
     % 调用smoothshapesigmoid函数对形状X进行平滑处理，得到平滑后的形状XSmooth，并将平滑后的权重存储在feat.basisWeights中
     [XSmooth,feat.basisWeights] = smoothshapesigmoid(X,kMax);
-    % 将feat.basisWeights的值赋给feat.oldBasisWeights，用于存储旧的权重
     feat.oldBasisWeights = feat.basisWeights;
     YSmooth = smoothshapesigmoid(Y,kMax);
     
@@ -90,7 +89,7 @@ function [Cfix,ainit,iMin,errorArrayGT,errorArray] = initMCMC(X,Y,param,kMin,kMa
 
         % 随机生成一个1或2的整数，表示当前的模式
         modeCurr = randi(2);
-        % 创建一个包含0和10的数组lambdaLapSet，用于表示拉普拉斯正则化项的权重
+        % 创建一个包含0和10的数组lambdaLapSet
         lambdaLapSet = [0,10];
         % 将根据当前模式选择的拉普拉斯正则化项的权重赋值给参数param.lambdaLap
         param.lambdaLap = lambdaLapSet(modeCurr);
@@ -114,7 +113,7 @@ function [Cfix,ainit,iMin,errorArrayGT,errorArray] = initMCMC(X,Y,param,kMin,kMa
         paramEval = param;
         % 将参数paramEval.matchingAlignment设置为true，表示进行匹配对齐
         paramEval.matchingAlignment = true;
-        % 将参数paramEval.facFeat设置为0.11，用于控制特征能量项的权重
+        % 将参数paramEval.facFeat设置为0.11
         paramEval.facFeat = 0.11;
 
         % 调用computeCorrCurr函数计算当前形状与目标形状的对应关系，并更新特征信息
