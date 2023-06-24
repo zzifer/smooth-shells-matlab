@@ -1,3 +1,8 @@
+% 返回M和z
+% M是一个雅可比矩阵，用于描述 ARAP（As-Rigid-As-Possible）变形在给定固定法线旋转下的变化情况。
+% 它是一个大小为 [nSamples nSamples] 的矩阵，其中 nSamples 是样本数量。M 描述了样本之间的相互影响关系，可以用于进行形状变形和优化过程。
+% z是一个增量向量，表示 ARAP 变形的结果。它是一个大小为 [nVert 1] 的向量，其中 nVert 是顶点的数量。
+% z 表示每个顶点的变形增量，即变形后的顶点位置与参考顶点位置之间的差异
 function [M,z] = jacobiannormalrotarap(vert,vertNew,normalNew,w,neigh,samples)
     % jacobiannormalrotarap - compute the arap jacobian for a fixed normal rotation
     %
